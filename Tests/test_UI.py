@@ -4,9 +4,8 @@ import pytest
 from pages.search import search
 from specific_data import UI_URL, cyrillic, latin, digit, specific_symbols, search_phrase
 
-chromeDriver =  webdriver.Chrome()
+chromeDriver = webdriver.Chrome()
 mainPage = search(chromeDriver, UI_URL)
-
 
 
 @allure.title('Строка поиска принимает ввод на кириллице')
@@ -20,7 +19,8 @@ def test_search_cyrillic_input_positive():
     with allure.step('Ввести в строку поиска символы на кириллице'):
         mainPage.search_input(cyrillic)
     with allure.step('Введенные символы должны отобразиться в строке поиска'):
-        assert  mainPage.get_search_bar_content() == cyrillic
+        assert mainPage.get_search_bar_content() == cyrillic
+
 
 @allure.title('Строка поиска принимает ввод на латинице')
 @allure.description('')
@@ -33,7 +33,8 @@ def test_search_latin_input_positive():
     with allure.step('Ввести в строку поиска символы на латинице'):
         mainPage.search_input(latin)
     with allure.step('Введенные символы должны отобразиться в строке поиска'):
-        assert  mainPage.get_search_bar_content() == latin
+        assert mainPage.get_search_bar_content() == latin
+
 
 @allure.title('Строка поиска принимает ввод цифрами')
 @allure.description('')
@@ -46,7 +47,8 @@ def test_search_digit_input_positive():
     with allure.step('Ввести в строку поиска цифры'):
         mainPage.search_input(digit)
     with allure.step('Введенные символы должны отобразиться в строке поиска'):
-        assert  mainPage.get_search_bar_content() == digit
+        assert mainPage.get_search_bar_content() == digit
+
 
 @allure.title('Строка поиска принимает ввод спецсимволами')
 @allure.description('')
@@ -59,7 +61,8 @@ def test_search_special_signs_input_positive():
     with allure.step('Ввести в строку поиска спецсимволы'):
         mainPage.search_input(specific_symbols)
     with allure.step('Введенные символы должны отобразиться в строке поиска'):
-        assert  mainPage.get_search_bar_content() == specific_symbols
+        assert mainPage.get_search_bar_content() == specific_symbols
+
 
 @allure.title('Производится поиск при нажатии кнопки поиск с введенными цифрами в строке поиска')
 @allure.description('')

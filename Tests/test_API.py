@@ -8,8 +8,6 @@ chitai_gorod = CG_API(API_URL, token)
 chitai_gorod_unauthorized = CG_API(API_URL, '')
 
 
-
-
 @allure.title('Добавление книги в корзину')
 @allure.description('')
 @allure.feature('Корзина')
@@ -26,8 +24,6 @@ def test_add_to_cart_positive():
         response = chitai_gorod.get_cart()
         assert response.json()['products'][0]['title'] == book_title
         chitai_gorod.remove_from_cart(product_id)
-
-
 
 
 @allure.title('Изменение количества товара в корзине')
@@ -51,8 +47,6 @@ def test_change_quantity_positive():
         chitai_gorod.remove_from_cart(product_id)
 
 
-
-
 @allure.title('Удаление товара из корзины')
 @allure.description('')
 @allure.feature('Корзина')
@@ -73,8 +67,6 @@ def test_remove_from_cart_positive():
         assert len(response.json()['products']) == 0
 
 
-
-
 @allure.title('Добавление книги в корзину без токена авторизации')
 @allure.description('')
 @allure.feature('Корзина')
@@ -88,8 +80,6 @@ def test_add_to_cart_unauthorized_negative():
         assert response.status_code == 401
 
 
-
-
 @allure.title('Изменение количества товара в корзине без токена авторизации')
 @allure.description('')
 @allure.feature('Корзина')
@@ -97,12 +87,11 @@ def test_add_to_cart_unauthorized_negative():
 @pytest.mark.API
 def test_change_quantity_unauthorized_negative():
     with allure.step('Отправить запрос на изменение количества товара в корзину без токена авторизации'):
-        response = chitai_gorod_unauthorized.change_quantity_cart(quantity_json)
+        response = chitai_gorod_unauthorized.change_quantity_cart(
+            quantity_json)
 
     with allure.step('Статус код 401'):
         assert response.status_code == 401
-
-
 
 
 @allure.title('Удаление товара из корзины без токена авторизации')
